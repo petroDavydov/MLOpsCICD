@@ -14,7 +14,7 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
-  profile = "goit-terraform"
+  profile = "davydovpetro-homework-5-6"
 
 
   default_tags {

@@ -6,15 +6,14 @@ module "eks" {
 
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
+  subnet_ids = var.subnet_ids
+  vpc_id = var.vpc_id
 
-
-  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
-  subnet_ids = data.terraform_remote_state.vpc.outputs.public_subnets
-
-
+ 
   cluster_endpoint_public_access = true
   enable_cluster_creator_admin_permissions = true
 
+  
 
   cluster_addons = {
     coredns                = {}
@@ -52,14 +51,11 @@ module "eks" {
         {
         key = "gpu-added-group"
         value = "true"
-        effect = "NoSchedule"
+        effect = "NO_SCHEDULE"
       }
    ]
   }
 }
-
-
-
 
   tags = {
     Environment = "dev"

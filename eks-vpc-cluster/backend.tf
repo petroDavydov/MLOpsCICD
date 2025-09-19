@@ -1,11 +1,11 @@
 #eks-vpc-cluster/backend.tf
 terraform {
     backend "s3" {
-        bucket         = "MLOps-CI-CD-homework-5-6"
+        bucket         = "davydovpetro-homework-5-6-tfstate"
         key            = "root/terraform.tfstate"
         region         = "eu-west-1"
         encrypt        = true
-        dynamodb_table = "my-terraform-lock-table"
+        dynamodb_table = "davydovpetro-homework-5-6-locks"
         profile = "davydovpetro-homework-5-6"
     }
 

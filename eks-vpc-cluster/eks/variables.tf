@@ -14,3 +14,13 @@ variable "aws_region" {
   default     = "eu-west-1"
   description = "The most profitable region"
 }
+
+variable "vpc_id" {
+  type        = string
+  description = "VPC ID"
+}
+
+variable "subnet_ids" {
+  type        = list(string)
+  description = "List of private subnet IDs"
+}
