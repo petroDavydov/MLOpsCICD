@@ -1,1 +1,27 @@
-#eks-vpc-cluster/argocd/values/argocd-values.yaml
+# argocd/values/argocd-values.yaml
+configs:
+  cm:
+    timeout.reconciliation: 30s
+    accounts.devops: apiKey,login
+
+
+controller:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+server:
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: false
+  extraArgs:
+    - --insecure
+
+redis:
+  enabled: true
