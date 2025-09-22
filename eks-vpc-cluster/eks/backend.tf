@@ -1,10 +1,10 @@
 # #eks-vps-cluster/eks/backend.tf
 # terraform {
 #   backend "s3" {
-#     bucket         = "MLOps-CI-CD-homework-5-6"
+#     bucket         = "homework-7-terraform-state-bucket"
 #     key            = "eks/terraform.tfstate"
-#     region         = "eu-west-1"
+#     region         = "us-east-1"
 #     encrypt        = true
-#     profile        = "davydovpetro-homework-5-6"
+#     profile        = "davydovpetro-homework-7"
 #   }
 # }

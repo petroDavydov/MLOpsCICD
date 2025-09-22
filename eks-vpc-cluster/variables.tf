@@ -2,7 +2,7 @@
 variable "name" {
     description = "The name of homework-5-6 the EKS cluster"
     type        = string
-    default     = "homework-5-6"
+    default     = "homework-7"
 }
 
 variable "cidr" {
@@ -14,7 +14,7 @@ variable "cidr" {
 variable "azs" {
     description = "A list of availability zones in the region"
     type        = list(string)
-    default     = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+    default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
   
 }
 
@@ -37,7 +37,7 @@ variable "tags" {
     type        = map(string)
     default     = {
         "Environment" = "dev"
-        "Project"     = "homework-5-6"
+        "Project"     = "homework-7"
     }
   
 }
@@ -45,7 +45,7 @@ variable "tags" {
 variable "cluster_name" {
     description = "The name of homework-5-6the EKS cluster"
     type        = string
-    default     = "homework-5-6"
+    default     = "homework-7"
   
 }
 
@@ -59,7 +59,7 @@ variable "cluster_version" {
 variable "aws_region" {
     description = "The AWS region to deploy the EKS cluster"
     type        = string
-    default     = "eu-west-1"
+    default     = "us-east-1"
   
 }
 
@@ -67,7 +67,7 @@ variable "aws_region" {
 variable "provider_profile" {
     description = "The AWS provider profile"
     type        = string
-    default     = "davydovpetro-homework-5-6"
+    default     = "davydovpetro-homework-7"
   
 }
 

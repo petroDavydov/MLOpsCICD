@@ -1,6 +1,5 @@
 #eks-vps-cluster/eks/outputs.tf
 
-# outputs.tf
 output "cluster_arn" {
   value       = module.eks.cluster_arn
   description = "The Amazon Resource Name (ARN) of the cluster"

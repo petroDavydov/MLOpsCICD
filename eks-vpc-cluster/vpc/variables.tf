@@ -1,7 +1,7 @@
 #eks-vps-cluster/vpc/variables.tf
 variable "name" {
     type= string
-    default = "homework-5-6"
+    default = "homework-7"
 }
 
 variable "cidr" {
@@ -11,7 +11,7 @@ variable "cidr" {
 
 variable "azs" {
     type = list(string)
-    default = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+    default = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
 
 variable "private_subnets" {

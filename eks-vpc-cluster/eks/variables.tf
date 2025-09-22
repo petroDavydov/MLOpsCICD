@@ -1,7 +1,7 @@
 #eks-vps-cluster/eks/variables.tf
 
 variable "cluster_name" {
-  default = "homework-5-6"
+  default = "homework-7"
 }
 
 
@@ -11,7 +11,7 @@ variable "cluster_version" {
 
 
 variable "aws_region" {
-  default     = "eu-west-1"
+  default     = "us-east-1"
   description = "The most profitable region"
 }
 

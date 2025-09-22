@@ -14,7 +14,7 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
-  profile = "davydovpetro-homework-5-6"
+  profile = "davydovpetro-homework-7"
 
 
   default_tags {

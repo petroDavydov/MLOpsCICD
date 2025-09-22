@@ -12,5 +12,5 @@ output "public_subnets" {
 }
 
 output "vpc_name" {
-    value = var.name  
+    value = var.name
 }
