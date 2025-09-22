@@ -29,6 +29,15 @@ eks-vps-cluster/
 │   ├── terraform.tf
 │   ├── backend.tf
 │   └── data.tf
+├── argocd/
+│ ├── main.tf
+│ ├── variables.tf
+│ ├── outputs.tf
+│ ├── provider.tf
+│ ├── terraform.tf
+│ ├── backend.tf
+│ └── values/
+│ └── argocd-values.yaml
 |--README.md
 ```
 
@@ -129,6 +138,86 @@ kubectl get nodes
  - Побачити дві групи нод: CPU та GPU
  - Статус Ready для кожної ноди
 
+-----------------------------------------------
+-----------------------------------------------
+# Кроки для запуску ArgoCD (eks-vps-cluster/argocd/)
+
+Перейти в папку argocd
+
+```bash
+cd argocd
+``` 
+
+## Ініціалізувати Terraform
+
+```bash
+terraform init
+```
+
+Це:
+ - Підключить провайдери (aws, kubernetes, helm)
+ - Зчитає кластер з remote state
+ - Підготує Helm-реліз ArgoCD
+
+
+## Запустити деплой ArgoCD
+
+```bash
+terraform apply
+```
+
+Це:
+ - Створить namespace infra-tools
+ - Встановить ArgoCD через Helm
+ - Підтягне argocd-values.yaml
+
+
+## Перевірити, що ArgoCD працює
+
+```bash
+kubectl get pods -n infra-tools
+``` 
+
+Очікування побачити:
+  argocd-server-xxxxx
+  argocd-repo-server-xxxxx
+  argocd-application-controller-xxxxx
+  argocd-dex-server-xxxxx
+
+
+## Відкрити доступ до ArgoCD UI
+
+```bash
+kubectl port-forward svc/argocd-server -n infra-tools 8080:443
+``` 
+
+Після цього відкривайте у браузері
+
+```
+http://localhost:8080
+
+```
+
+
+## Логін у ArgoCD
+
+```bash
+kubectl get secret argocd-initial-admin-secret -n infra-tools -o jsonpath="{.data.password}" | base64 -d; echo
+``` 
+логін: admin
+пароль: <пароль виведе команда вище>
+
+
+#### *Після цього ArgoCD  готовий до підключення Git-репозиторію `goit-argo` і автоматичного деплою MLflow або nginx.
+
+
+Перед запуском terraform apply переконайтесь, що argocd_namespace створюється автоматично або вже існує. Terraform створює його через kubernetes_namespace.
+
+Файл argocd-values.yaml містить налаштування RBAC, логін через devops, insecure доступ, та ресурси для controller. Ingress вимкнено, Redis увімкнено.
+
+Helm provider використовує зовнішній kubernetes provider, підключений до EKS через remote state. Вкладений блок kubernetes {} у provider "helm" не використовується.
+
+
 
 # Повне видалення інфраструктури
 
@@ -154,22 +243,16 @@ terraform destroy
 
 
 # Додаткові дані:
-GPU node group конфігурована відповідно до вимог, але її створення заблоковано через обмеження AWS. Це типова ситуація для нових акаунтів. Конфігурація зберігається, і після підвищення ліміту вона буде активована без змін.
-##### Помилка при створенні GPU node group:
-```
-Error: waiting for EKS Node Group (homework-5-6:gpu-nodes-20250919104218632400000018) create: unexpected state 'CREATE_FAILED', wanted target 'ACTIVE'. last error: eks-gpu-nodes-20250919104218632400000018-deccb0c8-ab63-48ae-c3ec-655b89bf0883: AsgInstanceLaunchFailures: Could not launch On-Demand Instances. VcpuLimitExceeded - You have requested more vCPU capacity than your current vCPU limit of 0 allows for the instance bucket that the specified instance type belongs to. Please visit http://aws.amazon.com/contact-us/ec2-request to request an adjustment to this limit. Launching EC2 instance failed.
-│ 
-│   with module.eks.module.eks.module.eks_managed_node_group["gpu-nodes"].aws_eks_node_group.this[0],
-│   on .terraform/modules/eks.eks/modules/eks-managed-node-group/main.tf line 395, in resource "aws_eks_node_group" "this":
-│  395: resource "aws_eks_node_group" "this" 
-```
 
-```
-Помилка: очікування групи вузлів EKS (домашнє завдання-5-6:gpu-nodes-20250919104218632400000018) створення: неочікуваний стан 'CREATE_FAILED', бажана ціль 'ACTIVE'. остання помилка: eks-gpu-nodes-20250919104218632400000018-deccb0c8-ab63-48ae-c3ec-655b89bf0883: AsgInstanceLaunchFailures: Не вдалося запустити екземпляри на вимогу. VcpuLimitExceeded - Ви запросили більшу потужність віртуального процесора (vCPU), ніж дозволяє ваш поточний ліміт vCPU, що дорівнює 0, для корзини екземплярів, до якої належить зазначений тип екземпляра. Будь ласка, відвідайте http://aws.amazon.com/contact-us/ec2-request, щоб подати запит на коригування цього ліміту. Запуск екземпляра EC2 не вдався. │ 
-│ з module.eks.module.eks.module.eks_managed_node_group["gpu-nodes"].aws_eks_node_group.this[0],
-│ на .terraform/modules/eks.eks/modules/eks-managed-node-group/main.tf рядок 395, у ресурсі "aws_eks_node_group" "this":
-│ 395: ресурс "aws_eks_node_group" "this" 
-```
+
+
+
+
+
+
+
+
+
 
 #### Опціональні перевірки
 
