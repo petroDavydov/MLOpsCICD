@@ -1,5 +1,5 @@
 <!-- eks-vpc-cluster/README.md -->
-# Homework 5-6: Terraform AWS Infrastructure — VPC + EKS
+# Homework 7: MlFlow, ArgoCD, EKS, VPC, Terraform
 
 Цей проєкт автоматизує створення повноцінної інфраструктури в AWS для майбутніх ML-сервісів. Він складається з двох основних модулів:
 
