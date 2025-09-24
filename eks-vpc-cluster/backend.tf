@@ -1,7 +1,7 @@
 #eks-vpc-cluster/backend.tf
 terraform {
     backend "s3" {
-        bucket         = "davydovpetro-homework-7"
+        bucket         = "petrodavydov-homework-7-terraform-state-bucket"
         key            = "root/terraform.tfstate"
         region         = "us-east-1"
         encrypt        = true
