@@ -14,7 +14,7 @@ variable "cidr" {
 variable "azs" {
     description = "A list of availability zones in the region"
     type        = list(string)
-    default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
+    default     = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
   
 }
 
@@ -59,7 +59,7 @@ variable "cluster_version" {
 variable "aws_region" {
     description = "The AWS region to deploy the EKS cluster"
     type        = string
-    default     = "us-east-1"
+    default     = "eu-west-1"
   
 }
 

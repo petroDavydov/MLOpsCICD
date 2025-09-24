@@ -9,7 +9,7 @@ variable "aws_profile" {
 variable "aws_region" {
  description = "AWS region for AWS provider (має відповідати регіону EKS)"
  type    = string
- default   = "us-east-1"
+ default   = "eu-west-1"
 }
 
 variable "eks_state_bucket" {
@@ -27,7 +27,7 @@ variable "eks_state_key" {
 variable "eks_state_region" {
  description = "Регіон бакета з remote state EKS"
  type    = string
- default   = "us-east-1"
+ default   = "eu-west-1"
 }
 
 variable "argocd_namespace" {

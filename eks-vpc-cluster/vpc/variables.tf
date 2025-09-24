@@ -11,7 +11,7 @@ variable "cidr" {
 
 variable "azs" {
     type = list(string)
-    default = ["us-east-1a", "us-east-1b", "us-east-1c"]
+    default = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
 }
 
 variable "private_subnets" {

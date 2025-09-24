@@ -69,8 +69,8 @@ aws configure list-profiles
 ```
 aws s3api create-bucket \
   --bucket davydovpetro-homework-7-tfstate \
-  --region us-east-1 \
-  --create-bucket-configuration LocationConstraint=us-east-1 \
+  --region eu-west-1 \
+  --create-bucket-configuration LocationConstraint=eu-west-1 \
   --profile davydovpetro-homework-7
 ```
 
@@ -80,7 +80,7 @@ aws dynamodb create-table \
   --attribute-definitions AttributeName=LockID,AttributeType=S \
   --key-schema AttributeName=LockID,KeyType=HASH \
   --billing-mode PAY_PER_REQUEST \
-  --region us-east-1 \
+  --region eu-west-1 \
   --profile davydovpetro-homework-7
 ```
 
@@ -124,7 +124,7 @@ terraform apply
 ## Крок 3: Підключення до кластеру
 
 ```bash
-aws eks --region us-east-1 update-kubeconfig --name homework-7 --profile davydovpetro-homework-7
+aws eks --region eu-west-1 update-kubeconfig --name homework-7 --profile davydovpetro-homework-7
 ```
 Ця команда:
  - Оновлює локальний kubeconfig файл
@@ -246,7 +246,7 @@ terraform destroy
 
 * Ресурси ноди
 ```bash
-kubectl describe node ip-10-0-1-239.us-east-1.compute.internal
+kubectl describe node ip-10-0-1-239.eu-west-1.compute.internal
 ```
 
 * Кластерні аддони
