@@ -1,12 +1,15 @@
 <!-- eks-vpc-cluster/README.md -->
 # Homework 7: MlFlow, ArgoCD, EKS, VPC, Terraform
 
-Цей проєкт автоматизує створення повноцінної інфраструктури в AWS для майбутніх ML-сервісів. Він складається з двох основних модулів:
+!!! "Цей проєкт використовує Terraform та пов'язаний з репозиторієм [MLOpsCICD-GitOps-Argo](https://github.com/petroDavydov/MLOpsCICD-GitOps-Argo)" 
+
+Цей проєкт автоматизує створення повноцінної інфраструктури в AWS для майбутніх ML-сервісів. Він складається з трех основних модулів:
 
 vpc/ — створення мережі VPC з підмережами, маршрутами та іншими необхідними ресурсами.
 
 eks/ — розгортання Kubernetes-кластеру з CPU та GPU node group-ами
 
+а також додаткового модуля argocd для розгортання ArgoCD.
 
 ## Структура проєкту
 ```
@@ -44,13 +47,13 @@ eks-vps-cluster/
 ## Передумови
 
  - Встановлений Terraform ≥ 1.5.0
- - AWS CLI з налаштованим профілем davydovpetro-homework-5-6
+ - AWS CLI з налаштованим профілем davydovpetro-homework-7
  - Доступ до AWS S3 та DynamoDB для зберігання стейту та блокування
 
 
 ##### за відсутності профілю вказаного у роботі, створіть його за звичайним сценарієм:
 ```
-aws configure --profile davydovpetro-homework-5-6
+aws configure --profile davydovpetro-homework-7
 ...
 ...
 ...
@@ -208,15 +211,12 @@ kubectl get secret argocd-initial-admin-secret -n infra-tools -o jsonpath="{.dat
 пароль: <пароль виведе команда вище>
 
 
-#### *Після цього ArgoCD  готовий до підключення Git-репозиторію `goit-argo` і автоматичного деплою MLflow або nginx.
+#### *Після цього ArgoCD  готовий до підключення Git-репозиторію `MLOpsCICD-GitOps-Argo` і автоматичного деплою MLflow або nginx.
 
 
 Перед запуском terraform apply переконайтесь, що argocd_namespace створюється автоматично або вже існує. Terraform створює його через kubernetes_namespace.
 
-Файл argocd-values.yaml містить налаштування RBAC, логін через devops, insecure доступ, та ресурси для controller. Ingress вимкнено, Redis увімкнено.
-
 Helm provider використовує зовнішній kubernetes provider, підключений до EKS через remote state. Вкладений блок kubernetes {} у provider "helm" не використовується.
-
 
 
 # Повне видалення інфраструктури
@@ -240,18 +240,6 @@ terraform destroy
 * Ви також можете використовувати ```terraform plan```, щоб попередньо переглянути, які ресурси будуть створені або змінені, без фактичного застосування змін.
 
 ```* УВАГА: Щоб бути повністю впевненим у видаленні всіх ресурсів, перевірте, ще раз ваше видалення у своєму кабінеті на aws !!!```
-
-
-# Додаткові дані:
-
-
-
-
-
-
-
-
-
 
 
 #### Опціональні перевірки
