@@ -68,20 +68,20 @@ aws configure list-profiles
 
 ```
 aws s3api create-bucket \
-  --bucket davydovpetro-homework-7-tfstate \
+  --bucket davydovpetro-homework-8-9-tfstate \
   --region eu-west-1 \
   --create-bucket-configuration LocationConstraint=eu-west-1 \
-  --profile davydovpetro-homework-7
+  --profile davydovpetro-homework-8-9
 ```
 
 ```
 aws dynamodb create-table \
-  --table-name davydovpetro-homework-7-locks \
+  --table-name davydovpetro-homework-8-9-locks \
   --attribute-definitions AttributeName=LockID,AttributeType=S \
   --key-schema AttributeName=LockID,KeyType=HASH \
   --billing-mode PAY_PER_REQUEST \
   --region eu-west-1 \
-  --profile davydovpetro-homework-7
+  --profile davydovpetro-homework-8-9
 ```
 
 Це потрібно для зберігання Terraform state і блокування.
@@ -124,7 +124,7 @@ terraform apply
 ## Крок 3: Підключення до кластеру
 
 ```bash
-aws eks --region eu-west-1 update-kubeconfig --name homework-7 --profile davydovpetro-homework-7
+aws eks --region eu-west-1 update-kubeconfig --name homework-7 --profile davydovpetro-homework-8-9
 ```
 Ця команда:
  - Оновлює локальний kubeconfig файл
