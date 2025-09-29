@@ -2,7 +2,7 @@
 variable "name" {
     description = "The name of homework-5-6 the EKS cluster"
     type        = string
-    default     = "homework-7"
+    default     = "homework-8-9"
 }
 
 variable "cidr" {
@@ -37,15 +37,15 @@ variable "tags" {
     type        = map(string)
     default     = {
         "Environment" = "dev"
-        "Project"     = "homework-7"
+        "Project"     = "homework-8-9"
     }
   
 }
 
 variable "cluster_name" {
-    description = "The name of homework-5-6the EKS cluster"
+    description = "The name of homework-8-9 the EKS cluster"
     type        = string
-    default     = "homework-7"
+    default     = "homework-8-9"
   
 }
 
@@ -67,7 +67,7 @@ variable "aws_region" {
 variable "provider_profile" {
     description = "The AWS provider profile"
     type        = string
-    default     = "davydovpetro-homework-7"
+    default     = "davydovpetro-homework-8-9"
   
 }
 

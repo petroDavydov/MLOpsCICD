@@ -1,7 +1,7 @@
 #eks-vps-cluster/vpc/variables.tf
 variable "name" {
     type= string
-    default = "homework-7"
+    default = "homework-8-9"
 }
 
 variable "cidr" {

@@ -1,7 +1,7 @@
 <!-- eks-vpc-cluster/README.md -->
-# Homework 7: MlFlow, ArgoCD, EKS, VPC, Terraform
+# Homework 8-9: MlFlow, ArgoCD, EKS, VPC, Terraform
 
-!!! "Цей проєкт використовує Terraform та пов'язаний з репозиторієм [MLOpsCICD-GitOps-Argo](https://github.com/petroDavydov/MLOpsCICD-GitOps-Argo)" 
+!!! "Цей проєкт використовує Terraform та пов'язаний з репозиторієм [MLOpsCICD-GitOps-Argo](https://github.com/petroDavydov/MLOpsCICD-GitOps-Argo) гілкою lesson-8-9" 
 
 Цей проєкт автоматизує створення повноцінної інфраструктури в AWS для майбутніх ML-сервісів. Він складається з трех основних модулів:
 
@@ -47,13 +47,13 @@ eks-vps-cluster/
 ## Передумови
 
  - Встановлений Terraform ≥ 1.5.0
- - AWS CLI з налаштованим профілем davydovpetro-homework-7
+ - AWS CLI з налаштованим профілем davydovpetro-homework-8-9
  - Доступ до AWS S3 та DynamoDB для зберігання стейту та блокування
 
 
 ##### за відсутності профілю вказаного у роботі, створіть його за звичайним сценарієм:
 ```
-aws configure --profile davydovpetro-homework-7
+aws configure --profile davydovpetro-homework-8-9
 ...
 ...
 ...
@@ -124,7 +124,7 @@ terraform apply
 ## Крок 3: Підключення до кластеру
 
 ```bash
-aws eks --region eu-west-1 update-kubeconfig --name homework-7 --profile davydovpetro-homework-8-9
+aws eks --region eu-west-1 update-kubeconfig --name homework-8-9 --profile davydovpetro-homework-8-9
 ```
 Ця команда:
  - Оновлює локальний kubeconfig файл

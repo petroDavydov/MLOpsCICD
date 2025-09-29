@@ -3,7 +3,7 @@
 variable "aws_profile" {
  description = "AWS CLI profile"
  type    = string
- default   = "davydovpetro-homework-7"
+ default   = "davydovpetro-homework-8-9"
 }
 
 variable "aws_region" {
@@ -15,7 +15,7 @@ variable "aws_region" {
 variable "eks_state_bucket" {
  description = "S3 bucket з remote state EKS"
  type    = string
- default   = "davydovpetro-homework-7"
+ default   = "davydovpetro-homework-8-9"
 }
 
 variable "eks_state_key" {

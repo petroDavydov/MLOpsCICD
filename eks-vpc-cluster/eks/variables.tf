@@ -1,7 +1,7 @@
 #eks-vps-cluster/eks/variables.tf
 
 variable "cluster_name" {
-  default = "homework-7"
+  default = "homework-8-9"
 }
 
 
